@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
+import {BrowserRouter as Router,Routes,Route,} from 'react-router-dom';
 
 function App() {
 
@@ -21,36 +21,41 @@ catchErrors(fetchData());
 
 },[])
 
-  return (
-    <div className="App">
-      <header className="App-header">
+return (
+  <div className="App">
+    <header className="App-header">
       {!token ? (
-        <a
-          className="App-link"
-          href="http://localhost:8888/login"
-        >
-          Login to Spotify
+        <a className="App-link" href="http://localhost:8888/login">
+          Log in to Spotify
         </a>
-        ) : (
-        <>
-        <h1>Logged in!</h1>
-        <button onClick={logout}>Logout</button>
+      ) : (
+        <Router>
+        <Routes>
+          <Route path="/top-artists" element={<h1>Top Artists</h1>}></Route>
+          <Route path="/top-tracks" element={<h1>Top Tracks</h1>}></Route>
+          <Route path="/playlists:id" element={<h1>Playlist</h1>}></Route>
+          <Route path="/playlists" element={<h1>Playlists</h1>}></Route>
+          <Route path="/" element={
+            <>
+              <button onClick={logout} style={{color:"red"}}>Log Out</button>
 
-          {profile && (
-            <div>
-            <h1>{profile.display_name}</h1>
-            <p>{profile.followers.total} Followers</p>
-            {profile.images.length && profile.images[0].url && (
-              <img src={profile.images[0].url} alt="Avatar"></img>
-            )}
-            </div>
-          )}
-
-        </>
-        )}
-      </header>
-    </div>
-  );
+              {profile && (
+                <div>
+                  <h1>{profile.display_name}</h1>
+                  <p>{profile.followers.total} Followers</p>
+                  {profile.images.length && profile.images[0].url && (
+                    <img src={profile.images[0].url} alt="Avatar"/>
+                  )}
+                </div>
+              )}
+            </>}>
+          </Route>
+        </Routes>
+      </Router>
+      )}
+    </header>
+  </div>
+);
 }
 
 export default App;
