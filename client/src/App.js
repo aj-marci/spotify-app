@@ -4,6 +4,16 @@ import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
 import {BrowserRouter as Router,Routes,Route,} from 'react-router-dom';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
 
   const [token, setToken] = useState(null);
@@ -30,6 +40,7 @@ return (
         </a>
       ) : (
         <Router>
+          <ScrollToTop />
         <Routes>
           <Route path="/top-artists" element={<h1>Top Artists</h1>}></Route>
           <Route path="/top-tracks" element={<h1>Top Tracks</h1>}></Route>
