@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
-import {BrowserRouter as Router,Routes,Route,} from 'react-router-dom';
+import {BrowserRouter as Router,Routes,Route, useLocation} from 'react-router-dom';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

@@ -11,15 +11,6 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 
-app.get('/', (req,res) => {
-    const data = {
-        name: 'Joel',
-        isAwesome: true,
-    };
-
-    res.json(data);
-});
-
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -72,11 +63,12 @@ app.get('/callback', (req, res) => {
     .then(response => {
         if (response.status === 200) {
 
-          const { access_token, refresh_token } = response.data;
+          const { access_token, refresh_token, expires_in } = response.data;
 
           const queryParams = querystring.stringify({
             access_token,
             refresh_token,
+            expires_in,
           })
 
           // redirect to react app
@@ -101,7 +93,7 @@ app.get('/callback', (req, res) => {
       url: 'https://accounts.spotify.com/api/token',
       data: querystring.stringify({
         grant_type: 'refresh_token',
-        refresh_token: refresh_token
+        refresh_token: refresh_token,
       }),
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
