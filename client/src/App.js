@@ -3,10 +3,11 @@ import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
 import {BrowserRouter as Router,Routes,Route, useLocation} from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { GlobalStyle } from './Styles';
 
 const StyledLoginButton = styled.a`
-  background-color: green;
-  color: white;
+  background-color: var(--green);
+  color: var(--white);
   padding: 10px 20px;
   margin: 20px auto;
   border-radius: 30px;
@@ -42,6 +43,7 @@ catchErrors(fetchData());
 
 return (
   <div className="App">
+    <GlobalStyle />
     <header className="App-header">
       {!token ? (
         <StyledLoginButton href="http://localhost:8888/login">
