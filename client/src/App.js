@@ -6,6 +6,7 @@ import { GlobalStyle } from './Styles';
 import { Login, Profile } from './Pages';
 import styled from 'styled-components/macro';
 
+
 const StyledLogoutButton = styled.button`
   position: absolute;
   top: var(--spacing-sm);
