@@ -3,7 +3,7 @@ import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
 import {BrowserRouter as Router,Routes,Route, useLocation} from 'react-router-dom';
 import { GlobalStyle } from './Styles';
-import { Login, Profile } from './Pages';
+import { Login, Profile, TopArtists, TopTracks } from './Pages';
 import styled from 'styled-components/macro';
 
 
@@ -63,8 +63,8 @@ return (
         <Router>
           <ScrollToTop />
         <Routes>
-          <Route path="/top-artists" element={<h1>Top Artists</h1>}></Route>
-          <Route path="/top-tracks" element={<h1>Top Tracks</h1>}></Route>
+          <Route path="/top-artists" element={<TopArtists />}></Route>
+          <Route path="/top-tracks" element={<TopTracks />}></Route>
           <Route path="/playlists:id" element={<h1>Playlist</h1>}></Route>
           <Route path="/playlists" element={<h1>Playlists</h1>}></Route>
           <Route path="/" element={<Profile />}>
