@@ -57,11 +57,11 @@ const Profile = () => {
       )}
                 {topArtists && topTracks && playlists &&(
             <main>
-              <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
+              <SectionWrapper title="Top artists" seeAllLink="/top-artists">
                 <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
               </SectionWrapper>
 
-              <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
+              <SectionWrapper title="Top tracks" seeAllLink="/top-tracks">
                 <TrackList tracks={topTracks.items.slice(0, 15)} />
               </SectionWrapper>
 
