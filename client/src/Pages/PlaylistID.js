@@ -102,7 +102,7 @@ const tracksWithAudioFeatures = useMemo(() => {
   });
 }, [sortValue, tracksWithAudioFeatures]);
 
-console.log(sortedTracks);
+console.log(playlist);
 
   return (
     <>
