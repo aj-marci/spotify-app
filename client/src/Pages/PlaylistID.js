@@ -4,7 +4,7 @@ import { catchErrors } from '../utils'
 import { getPlaylistById, getAudioFeaturesForTracks } from '../spotify';
 import { StyledHeader, StyledDropdown } from '../Styles';
 import axios from 'axios';
-import { TrackList, SectionWrapper } from '../Components';
+import { TrackList, SectionWrapper, Loader } from '../Components';
 
 
 const PlaylistId = () => {
@@ -144,8 +144,10 @@ console.log(sortedTracks);
                 </select>
               </StyledDropdown>
               </div>
-              {sortedTracks && (
+              {sortedTracks ? (
                 <TrackList tracks={sortedTracks} />
+              ) : (
+                <Loader />
               )}
             </SectionWrapper>
           </main>
