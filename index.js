@@ -1,15 +1,15 @@
 require('dotenv').config()
 
 const express = require('express');
-const app = express();
-const port = 8888;
 const querystring = require('querystring');
+const app = express();
 const axios = require('axios');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
-
+const FRONTEND_URI = process.env.FRONTEND_URI;
+const PORT = process.env.PORT || 8888;
 
 /**
  * Generates a random string containing numbers and letters
@@ -76,7 +76,7 @@ app.get('/callback', (req, res) => {
           })
 
           // redirect to react app
-          res.redirect(`http://localhost:3000/?${queryParams}`);
+          res.redirect(`${FRONTEND_URI}/?${queryParams}`);
 
           // pass tokens in query params
         } else {
@@ -112,6 +112,6 @@ app.get('/callback', (req, res) => {
       });
   });
 
-app.listen(port, () => {
-    console.log('Express app listening at http://localhost:8888');
+app.listen(PORT, () => {
+    console.log(`Express app listening at http://localhost:${PORT}`);
 });
